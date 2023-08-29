@@ -1,5 +1,9 @@
-from parser import parser
-from evaluator import evaluate
+from demo.filter.parser import parser
+from demo.filter.evaluator import evaluate
+
+'''
+test use the expression check result on context to filter result
+'''
 
 if __name__=='__main__':
 
