@@ -26,23 +26,15 @@ t_LTE = r'<='
 t_GTE = r'>='
 t_NUMBER = r'\d+'
 
-
-
-
 def t_Identifier(t):
     r'[a-zA-Z_][a-zA-Z_0-9]*'
     return t
-
 
 def t_String(t):
     r'\'.*\''
     return t
 
-
-
-
 t_ignore = ' \t\n'
-
 
 def t_error(t):
     print("Invalid token %s" % t.value[0])

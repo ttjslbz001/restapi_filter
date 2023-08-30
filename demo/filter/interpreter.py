@@ -1,9 +1,9 @@
+from demo.filter.utils import get_value
+
+
 def evaluate(expression, context):
     op = expression.get('op')
     args = expression.get('args')
-
-    if op == 'eq':
-        return context[args[0]] == args[1]
 
     if op == 'and':
         return all(evaluate(arg, context) for arg in args)
@@ -11,11 +11,18 @@ def evaluate(expression, context):
     if op == 'or':
         return any(evaluate(arg, context) for arg in args)
 
-    if op == 'lt':
-        return context[args[0]] < args[1]
+    if op in ['eq', 'lt', 'gt']:
+        args = expression['args']
+        arg1, arg2 = get_value(context, args[0]), args[1]
 
-    if op == 'gt':
-        return context[args[0]] > args[1]
+        if op == 'eq':
+            return arg1 == arg2
+        elif op == 'lt':
+            return arg1 < arg2
+        elif op == 'gt':
+            return arg1 > arg2
+
+    return True
 
     # ... Implement other operations like 'le', 'ge', 'ne', etc. ...
 
